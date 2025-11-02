@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Tubling official</title>
+<style>
+    body {
+  font-family: "Prompt", sans-serif;
+  background: #000;
+  color: #fff;
+}
+hr {
+  border: 1px solid #fff; width: 50%; margin: 20px auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:70px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+.nav-container {
+  width:100%;
+  max-width:2000px;
+  padding:0 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo {
+  font-family: "BBH Sans Bartle", sans-serif;
+  font-size:30px;
+  color:white;
+  font-weight:400;
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+.nav-links a {
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:1px;
+}
+.nav-links a:hover {
+  color: #ccc;
+}
+/* ✅ Search Bar */
+.search-form {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 4px 10px;
+  transition: background 0.3s ease;
+}
+
+.search-form:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.search-form input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  width: 100px;
+  transition: width 0.3s ease;
+}
+
+.search-form input:focus {
+  width: 150px;
+}
+
+.search-form button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  color: #ccc;
+}
+/* 🔸 Hamburger Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+.hamburger span {
+  width: 25px; height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ✅ Mobile Menu Style */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+}
+
+/* 🔹 Hamburger Animation (เปิดเมนู) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ปรับขนาดโลโก้ */
+@media (max-width: 600px) {
+  .logo { font-size: 22px; }
+}
+
+/* Hero Section */
+.hero {
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+}
+.hero video {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  transition: opacity 0.5s ease-out;
+}
+.hero .content {
+  position:absolute;
+  bottom:50px;
+  width:100%;
+  text-align:center;
+  z-index:1;
+  padding:0 20px;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.hero .content p {
+  color: rgba(255,255,255,0.5);
+  font-size:1.2rem;
+  font-weight:300;
+}
+
+/* About Section */
+main { background:black; padding:100px 20px 50px 20px; }
+
+.about-section {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:60px;
+  max-width:2500px;
+  margin:0 auto;
+  padding:80px 80px;
+}
+.about-text { flex:1; }
+.about-text h2 { font-size:3rem; margin-bottom:20px; }
+.about-text p { font-size:1.1rem; line-height:1.8; margin-bottom:15px; color:#ddd; }
+
+.about-image { flex:1; display:flex; justify-content:center; }
+.about-image img {
+  width:100%; max-width:500px; border-radius:20px;
+  box-shadow:0 0 20px rgba(255,255,255,0.1);
+  transition: transform 0.4s ease;
+  margin-left:100px;
+}
+.about-image img:hover { transform:scale(1.03); }
+
+/* Fade + Slide Animation */
+.fade-left, .fade-right {
+  opacity:0;
+  transform: translateY(50px);
+  transition:opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-left { transform:translateX(-60px); }
+.fade-right { transform:translateX(60px); }
+.fade-left.visible, .fade-right.visible { opacity:1; transform:translateX(0); }
+
+.Ani:hover { transform:scale(1.1); }
+
+/* What We Do */
+.whatwedo {
+  background:#000;
+  text-align:center;
+  padding:100px 20px;
+}
+.whatwedo h2 {
+  font-size:24px;
+  margin-bottom:40px;
+  animation: fadeInDown 1s ease;
+}
+
+/* ✅ SLIDER FIXED */
+.slider-container {
+  position: relative;
+  width: 960px;
+  height: 540px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.6s ease;
+  width: 100%;
+}
+
+.slide {
+  flex: 0 0 100%;        /* ✅ แก้ให้แต่ละ slide กว้างเท่ากับ container */
+  height: 540px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Arrows */
+.arrow {
+  font-size:48px;
+  color:#fff;
+  cursor:pointer;
+  user-select:none;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  transition:all 0.3s ease;
+  background:transparent;
+  padding:12px 20px;
+  backdrop-filter:blur(4px);
+  box-shadow:0 0 10px rgba(255,255,255,0.2);
+}
+.arrow.left { left:-5px; }
+.arrow.right { right:-5px; }
+.arrow:hover {
+  background:rgba(255,255,255,0.35);
+  transform:translateY(-50%) scale(1.1);
+  box-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+/* Dots */
+.dots {
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+.dots span {
+  width:8px; height:8px;
+  background:#777;
+  border-radius:50%;
+  display:inline-block;
+  transition:background 0.3s ease;
+}
+.dots span.active { background:#fff; }
+
+/* Desktop */
+@media (min-width: 1025px) {
+  .about-section { flex-direction: row; padding: 100px 120px; }
+  .about-text h2 { font-size: 3rem; }
+  .slider-container { width: 960px; height: 540px; }
+}
+
+/* iPad */
+@media (max-width: 1024px) and (min-width: 601px) {
+  .navbar { height:65px; }
+  .nav-container { padding:0 30px; }
+  .logo { font-size:24px; }
+  .nav-links a { font-size:15px; }
+
+  .about-section {
+    flex-direction:column;
+    text-align:center;
+    gap:40px;
+    padding:80px 40px;
+  }
+
+  .about-image img { max-width:400px; margin-left:0; }
+
+  .slider-container { width:720px; height:405px; }
+  .arrow { font-size:36px; }
+}
+
+/* iPhone */
+@media (max-width: 600px) {
+  .navbar { height:55px; }
+  .logo { font-size:18px; }
+  .nav-container { padding:0 15px; }
+  .nav-links { gap:10px; }
+  .nav-links a { font-size:13px; }
+
+  .hero { height:80dvh; }
+
+  .about-section {
+    flex-direction:column;
+    text-align:center;
+    padding:60px 20px;
+  }
+
+  .about-text h2 { font-size:1.8rem; }
+  .about-text p { font-size:0.9rem; }
+
+  .about-image img {
+    max-width:85%;
+    margin-left:0;
+  }
+
+  .slider-container {
+    width:100%;
+    aspect-ratio:16/9;
+    height:auto;
+  }
+
+  .slide {
+    height:auto;
+    aspect-ratio:16/9;
+  }
+
+  .arrow {
+    font-size:28px;
+    padding:8px 12px;
+    background:rgba(0,0,0,0.5);
+  }
+
+  .dots span { width:6px; height:6px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo"><a href="webno1.html" style="text-decoration:none; color:#fff;">TUBLING</a></div>
+        <!-- ✅ Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="nav-links">
+  <!-- ✅ Search Bar -->
+  <form class="search-form" action="#" method="get">
+    <input type="text" placeholder="Search..." name="q">
+    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <!-- ✅ End Search Bar -->
+      <hr style="border-left:0.5px solid #fff; height:35px;">
+      <a href="news.html" class="Ani">NEWS</a>
+      <hr style="border-left:0.5px solid #fff; height:35px;">
+      <a href="Team.html" class="Ani">TEAM</a>
+      <hr style="border-left:0.5px solid #fff; height:35px;">
+      <a href="Works.html" class="Ani">WORKS</a>
+      <hr style="border-left:0.5px solid #fff; height:35px;">
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <video id="heroVideo" autoplay muted loop playsinline>
+    <source src="videona.mp4" type="video/mp4">
+    เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+  </video>
+  <div class="content" id="heroContent"><p>Scroll</p></div>
+</section>
+
+<section class="about-section">
+  <div class="about-text fade-left">
+    <h2>about us</h2>
+    <p>
+      <strong>Tubling</strong> คือทีมฟรีแลนซ์รุ่นใหม่ที่รวมตัวกันจากหลากหลายสายอาชีพด้านเทคโนโลยีและศิลปะดิจิทัล  
+      เรามีความเชี่ยวชาญในทุกแขนงของงานคอมพิวเตอร์ ไม่ว่าจะเป็น  
+      <strong>ตัดต่อวิดีโอ</strong>, <strong>โมชั่นกราฟิก (Motion Graphic)</strong>,  
+      <strong>แอนิเมชัน 3D</strong>, <strong>กราฟิกดีไซน์</strong>
+      ไปจนถึงการพัฒนาเว็บไซต์และสื่อมัลติมีเดียครบวงจร
+    </p>
+    <p>
+      ด้วยแนวคิดที่ว่า <em>"เทคโนโลยีคือเครื่องมือ ศิลปะคือหัวใจ"</em>  
+      เราจึงสร้างสรรค์ผลงานที่ทั้งสวยงาม มีเอกลักษณ์ และตอบโจทย์ทางธุรกิจของลูกค้าได้อย่างลงตัว  
+      ไม่ว่าคุณจะเป็นแบรนด์เล็ก สตาร์ทอัพ หรือองค์กรใหญ่ —  
+      เราพร้อมจะร่วมเดินทางไปกับคุณในทุกโปรเจ็กต์ดิจิทัล
+    </p>
+  </div>
+
+  <div class="about-image fade-right">
+    <img src="about.webp" alt="Tubling Team" />
+  </div>
+</section>
+
+<section class="whatwedo">
+  <h2>Services</h2>
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide" style="background-image:url('S.webp');"></div>
+      <div class="slide" style="background-image:url('01.png');"></div>
+      <div class="slide" style="background-image:url('Banner.png');"></div>
+      <div class="slide" style="background-image:url('tlauncher.png');"></div>
+    </div>
+    <div class="arrow left">&#10094;</div>
+    <div class="arrow right">&#10095;</div>
+  </div>
+
+  <div class="dots">
+    <span class="active"></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</section>
+
+<script>
+
+  /* ✅ Hamburger Toggle */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+});
+
+/* Hero fade on scroll */
+const video = document.getElementById('heroVideo');
+const content = document.getElementById('heroContent');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = window.innerHeight;
+  const opacity = Math.max(1 - scrollY / (heroHeight / 2), 0);
+  video.style.opacity = opacity;
+  content.style.opacity = Math.max(1 - scrollY / (heroHeight / 3), 0);
+  content.style.transform = `translateY(${scrollY / 5}px)`;
+});
+
+/* Fade in sections */
+const fadeEls = document.querySelectorAll('.fade-left, .fade-right');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+fadeEls.forEach(el => observer.observe(el));
+
+/* ✅ Responsive Slider + Swipe */
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dots span');
+const prev = document.querySelector('.arrow.left');
+const next = document.querySelector('.arrow.right');
+let index = 0;
+
+function updateSlider() {
+  const slideWidth = slides[0].clientWidth; // ✅ ขนาดจริงของ slide
+  slider.style.transform = `translateX(-${index * slideWidth}px)`;
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+}
+function nextSlide() { index = (index + 1) % slides.length; updateSlider(); }
+function prevSlide() { index = (index - 1 + slides.length) % slides.length; updateSlider(); }
+
+next.addEventListener('click', nextSlide);
+prev.addEventListener('click', prevSlide);
+dots.forEach((dot, i) => dot.addEventListener('click', () => { index = i; updateSlider(); }));
+
+let autoPlay = setInterval(nextSlide, 4000);
+window.addEventListener('resize', updateSlider);
+updateSlider();
+
+/* 📱 Swipe support */
+let startX = 0, endX = 0;
+const threshold = 50;
+slider.addEventListener('touchstart', e => {
+  clearInterval(autoPlay);
+  startX = e.touches[0].clientX;
+});
+slider.addEventListener('touchmove', e => {
+  endX = e.touches[0].clientX;
+});
+slider.addEventListener('touchend', () => {
+  const diff = startX - endX;
+  if (Math.abs(diff) > threshold) diff > 0 ? nextSlide() : prevSlide();
+  autoPlay = setInterval(nextSlide, 4000);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Tubling official</title>
+<style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "Prompt", sans-serif;
+  background: #000;
+  color: #fff;
+}
+hr {
+  border: 1px solid #fff; width: 50%; margin: 20px auto;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:70px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+.nav-container {
+  width:100%;
+  max-width:2000px;
+  padding:0 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo {
+  font-family: "BBH Sans Bartle", sans-serif;
+  font-size:30px;
+  color:white;
+  font-weight:400;
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+.nav-links a {
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:1px;
+}
+.nav-links a:hover {
+  color: #ccc;
+}
+
+/* Language toggle button */
+.lang-btn {
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.lang-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Hero Section */
+.hero {
+  position:relative;
+  width:100%;
+  height:100dvh;
+  overflow:hidden;
+}
+.hero video {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: opacity 0.5s ease-out;
+}
+.hero .content {
+  position:absolute;
+  bottom:50px;
+  width:100%;
+  text-align:center;
+  z-index:1;
+  padding:0 20px;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.hero .content p {
+  color: rgba(255,255,255,0.5);
+  font-size:1.2rem;
+  font-weight:300;
+}
+
+/* About Section */
+main {
+  background: black;
+  padding:100px 20px 50px 20px;
+}
+
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 2500px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  color: #ddd;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+  transition: transform 0.4s ease;
+}
+.about-image img:hover { transform: scale(1.03); }
+
+/* Fade + Slide Animation */
+.fade-left, .fade-right {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.fade-left { transform: translateX(-60px); }
+.fade-right { transform: translateX(60px); }
+.fade-left.visible, .fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-section { flex-direction: column; text-align: center; }
+  .about-image { margin-top: 30px; }
+  .about-text h2 { font-size: 2.3rem; }
+}
+
+@media (max-width:768px) {
+  .logo { font-size: 15px; }
+  .nav-links a { font-size: 14px; gap: 5px; }
+  .nav-container {width: 200%; padding: 0 0; padding-left: 15px; padding-right: 10px;}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo">TUBLING</div>
+    <nav class="nav-links">
+      <a href="#">NEWS</a>
+      <a href="#">COMPANY</a>
+      <a href="#">WORKS</a>
+      <button class="lang-btn" onclick="toggleLang()">EN / TH</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <video id="heroVideo" autoplay muted loop playsinline>
+    <source src="videona.mp4" type="video/mp4">
+    เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+  </video>
+  <div class="content" id="heroContent">
+    <p>Scroll</p>
+  </div>
+</section>
+
+<main>
+  <section class="about-section">
+    <div class="about-text fade-left" id="aboutText">
+      <h2 id="title">about us</h2>
+      <p id="p1">
+        <strong>Tubling</strong> คือทีมฟรีแลนซ์รุ่นใหม่ที่รวมตัวกันจากหลากหลายสายอาชีพด้านเทคโนโลยีและศิลปะดิจิทัล  
+        เรามีความเชี่ยวชาญในทุกแขนงของงานคอมพิวเตอร์ ไม่ว่าจะเป็น  
+        <strong>ตัดต่อวิดีโอ</strong>, <strong>โมชั่นกราฟิก (Motion Graphic)</strong>,  
+        <strong>แอนิเมชัน 3D</strong>, <strong>กราฟิกดีไซน์</strong>,  
+        ไปจนถึงการพัฒนาเว็บไซต์และสื่อมัลติมีเดียครบวงจร
+      </p>
+      <p id="p2">
+        ด้วยแนวคิดที่ว่า <em>"เทคโนโลยีคือเครื่องมือ ศิลปะคือหัวใจ"</em>  
+        เราจึงสร้างสรรค์ผลงานที่ทั้งสวยงาม มีเอกลักษณ์ และตอบโจทย์ทางธุรกิจของลูกค้าได้อย่างลงตัว  
+        ไม่ว่าคุณจะเป็นแบรนด์เล็ก สตาร์ทอัพ หรือองค์กรใหญ่ —  
+        เราพร้อมจะร่วมเดินทางไปกับคุณในทุกโปรเจ็กต์ดิจิทัล
+      </p>
+    </div>
+
+    <div class="about-image fade-right">
+      <img src="your-image.png" alt="Tubling Team" />
+    </div>
+  </section>
+</main>
+
+<script>
+// --- Hero fade effect ---
+const video = document.getElementById('heroVideo');
+const content = document.getElementById('heroContent');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = window.innerHeight;
+  let opacity = 1 - scrollY / (heroHeight / 2);
+  opacity = Math.max(opacity, 0);
+  video.style.opacity = opacity;
+
+  let contentOpacity = 1 - scrollY / (heroHeight / 3);
+  contentOpacity = Math.max(contentOpacity, 0);
+  content.style.opacity = contentOpacity;
+  content.style.transform = `translateY(${scrollY/5}px)`;
+});
+
+// --- Fade-in animation ---
+const fadeEls = document.querySelectorAll('.fade-left, .fade-right');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+fadeEls.forEach(el => observer.observe(el));
+
+// --- Language toggle ---
+let currentLang = 'th';
+function toggleLang() {
+  const title = document.getElementById('title');
+  const p1 = document.getElementById('p1');
+  const p2 = document.getElementById('p2');
+
+  if (currentLang === 'th') {
+    currentLang = 'en';
+    title.textContent = "About Us";
+    p1.innerHTML = `<strong>Tubling</strong> is a new-generation freelance team united from diverse fields of technology and digital art.  
+    We specialize in all areas of computer work including <strong>video editing</strong>, <strong>motion graphics</strong>,  
+    <strong>3D animation</strong>, <strong>graphic design</strong>, and full-scale <strong>web & multimedia development</strong>.`;
+
+    p2.innerHTML = `With the belief that <em>"Technology is the tool, art is the heart"</em>,  
+    we create works that are both beautiful and purposeful — combining creativity and practicality seamlessly.  
+    Whether you're a small brand, a startup, or a large enterprise —  
+    we’re ready to journey with you through every digital project.`;
+  } else {
+    currentLang = 'th';
+    title.textContent = "about us";
+    p1.innerHTML = `<strong>Tubling</strong> คือทีมฟรีแลนซ์รุ่นใหม่ที่รวมตัวกันจากหลากหลายสายอาชีพด้านเทคโนโลยีและศิลปะดิจิทัล  
+    เรามีความเชี่ยวชาญในทุกแขนงของงานคอมพิวเตอร์ ไม่ว่าจะเป็น  
+    <strong>ตัดต่อวิดีโอ</strong>, <strong>โมชั่นกราฟิก (Motion Graphic)</strong>,  
+    <strong>แอนิเมชัน 3D</strong>, <strong>กราฟิกดีไซน์</strong>,  
+    ไปจนถึงการพัฒนาเว็บไซต์และสื่อมัลติมีเดียครบวงจร`;
+
+    p2.innerHTML = `ด้วยแนวคิดที่ว่า <em>"เทคโนโลยีคือเครื่องมือ ศิลปะคือหัวใจ"</em>  
+    เราจึงสร้างสรรค์ผลงานที่ทั้งสวยงาม มีเอกลักษณ์ และตอบโจทย์ทางธุรกิจของลูกค้าได้อย่างลงตัว  
+    ไม่ว่าคุณจะเป็นแบรนด์เล็ก สตาร์ทอัพ หรือองค์กรใหญ่ —  
+    เราพร้อมจะร่วมเดินทางไปกับคุณในทุกโปรเจ็กต์ดิจิทัล`;
+  }
+}
+</script>
+
+</body>
+</html>
