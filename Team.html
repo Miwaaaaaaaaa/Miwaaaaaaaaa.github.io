@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Tubling official</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "Prompt", sans-serif;
+  background: #000;
+  color: #fff;
+}
+hr { border: 1px solid #fff; width: 50%; margin: 20px auto; }
+
+    /* ---------- NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:70px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.nav-container {
+  width:100%;
+  max-width:2000px;
+  padding:0 60px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+  font-family: "BBH Sans Bartle", sans-serif;
+  font-size:30px;
+  color:white;
+  font-weight:400;
+}
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+.nav-links a {
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.nav-links a:hover { color:#ccc; }
+
+/* ✅ Search Bar */
+.search-form {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 4px 10px;
+  transition: background 0.3s ease;
+}
+
+.search-form:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.search-form input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  width: 100px;
+  transition: width 0.3s ease;
+}
+
+.search-form input:focus {
+  width: 150px;
+}
+
+.search-form button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  color: #ccc;
+}
+
+    hr.nav-sep {
+      border-left: 0.5px solid #666;
+      height: 35px;
+    }
+
+    @media (max-width: 768px) {
+      .logo a { font-size: 18px; }
+      .nav-container { padding: 0 20px; }
+      .nav-links a { font-size: 14px; }
+    }
+
+    /* ---------- TEAM SECTION ---------- */
+    main {
+      padding-top: 110px;
+      padding-bottom: 60px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    .card {
+      position: relative;
+      width: 280px;
+      height: 380px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(255,255,255,0.1);
+    }
+
+    .card .content {
+      position: relative;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .imgBx {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.4);
+    }
+
+    .imgBx img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .contentBx {
+      color: #fff;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .contentBx h3 {
+      font-weight: 500;
+      line-height: 1.2em;
+    }
+
+    .contentBx span {
+      font-size: 0.8em;
+      font-weight: 300;
+      opacity: 0.8;
+    }
+
+    .sci {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 20px;
+    }
+
+    .sci li {
+      list-style: none;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .card:hover .sci li {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    /* Animation delay for social media icons */
+    .card:hover .sci li:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    .card:hover .sci li:nth-child(2) {
+      transition-delay: 0.1s;
+    }
+    
+    .card:hover .sci li:nth-child(3) {
+      transition-delay: 0.2s;
+    }
+    
+    .card:hover .sci li:nth-child(4) { 
+        transition-delay: 0.3s; 
+    }
+
+    .sci li a {
+      color: #fff;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+
+    .sci li a:hover {
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+  <div class="nav-container">
+    <div class="logo"><a href="webno1.html" style="text-decoration: none; color: #fff;">TUBLING</a></div>
+    <nav class="nav-links">
+      <hr style="border-left: 0.5px solid #fff; height: 35px;">  
+      <a href="news.html" class="Ani">NEWS</a>
+      <hr style="border-left: 0.5px solid #fff; height: 35px;"> 
+      <a href="#" class="Ani">TEAM</a>
+      <hr style="border-left: 0.5px solid #fff; height: 35px;"> 
+      <a href="Works.html" class="Ani">WORKS</a> 
+      <hr style="border-left: 0.5px solid #fff; height: 35px;">
+    </nav>
+  </div>
+</header>
+
+  <main>
+    <section class="container">
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายภัตธนสันต์ เพิ่มทองชูชัย">
+          </div>
+          <div class="contentBx">
+            <h3>นายภัตธนสันต์ เพิ่มทองชูชัย<br><span>Branding & Strategy</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายภูมิพัฒน์ มานู">
+          </div>
+          <div class="contentBx">
+            <h3>นายภูมิพัฒน์ มานู<br><span>Video Editor</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายวุฒิภัทร ลิ่มพงษ์">
+          </div>
+          <div class="contentBx">
+            <h3>นายวุฒิภัทร ลิ่มพงษ์<br><span>Animator</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายจิระศิษฐ์ วงศ์ธรรมชัย">
+          </div>
+          <div class="contentBx">
+            <h3>นายจิระศิษฐ์ วงศ์ธรรมชัย<br><span>Branding & Strategy</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายเจษฎากรณ์ แซ่ลี้">
+          </div>
+          <div class="contentBx">
+            <h3>นายเจษฎากรณ์ แซ่ลี้<br><span>Branding & Strategy</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายโชติบัณฑ์ จรูญศักดิ์">
+          </div>
+          <div class="contentBx">
+            <h3>นายโชติบัณฑ์ จรูญศักดิ์<br><span>Branding & Strategy</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <div class="imgBx">
+            <img src="about.webp" alt="นายพฎาศรัย ขันโพชา">
+          </div>
+          <div class="contentBx">
+            <h3>นายพฎาศรัย ขันโพชา<br><span>Branding & Strategy</span></h3>
+          </div>
+        </div>
+        <ul class="sci">
+          <li style="--i:1"><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li style="--i:2"><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+          <li style="--i:3"><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
